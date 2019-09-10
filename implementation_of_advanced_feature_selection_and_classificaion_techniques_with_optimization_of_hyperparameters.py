@@ -17,7 +17,7 @@ import io
 import pandas as pd 
 import numpy as np 
 
-#import libraries to implement differert clasifiers
+#import libraries to implement different classifiers
 #import library to split test and train data
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split 
@@ -43,11 +43,11 @@ import gspread
 auth.authenticate_user()
 gc = gspread.authorize(GoogleCredentials.get_application_default())
 
-#create a google spreadsheet with name "G4_final"
-sh = gc.create('G1_out.csv')
+#create a google spreadsheet with this name "G25_out"
+sh = gc.create('G25_out.csv')
 
 #decode and read the dataset
-df = pd.read_csv(io.StringIO(uploaded['Gear1.csv'].decode('utf-8'))) 
+df = pd.read_csv(io.StringIO(uploaded['Gear25.csv'].decode('utf-8'))) 
 
 #to remove columns with 0's
 df = df.loc[: , (df!= 0).any(axis = 0)] 
@@ -61,10 +61,10 @@ Y = df.iloc[:,-1].values
 #open the google spreadsheet
 #the output of this code will be updated to this google spreadsheet
 #this spreadsheet can be accessed from google drive
-worksheet = gc.open('G1_out.csv').sheet1 
+worksheet = gc.open('G25_out.csv').sheet1 
 
 #our aim is to get the output from fold no#1 to no#10
-#loop variable is used to check change the cross_validation values from 1 to 10
+#loop variable is used to change the cross_validation values from 1 to 10
 loop = 1
 for x in range (1,11): 
   if loop >= 2: 
@@ -96,7 +96,7 @@ for x in range (1,11):
     svclassifier = SVC(kernel='rbf', gamma='scale', C= 1000)
     np.mean(cross_val_score(svclassifier, X_train, Y_train, cv=cv))
     svclassifier.fit(X_train, Y_train) 
-    svc_predictions = svclassifier.predict(X_test) #testing
+    svc_predictions = svclassifier.predict(X_test) 
     
     #codes works fine but takes too much time to process
     #to test output uncomment this from here...
@@ -168,7 +168,7 @@ for x in range (1,11):
 
     #for RandomForest classifier and tuning hyperparameter
     clf = RandomForestClassifier(n_estimators=100)
-    clf.fit(X_train,Y_train)# predictions
+    clf.fit(X_train,Y_train)
     clf_predict = clf.predict(X_test)
     
     #for RBF classifier and tuning hyperparameter
@@ -190,7 +190,7 @@ for x in range (1,11):
     
     #for k-NN classifier with neighbors = 1 
     knn = KNeighborsClassifier(n_neighbors=1)
-    knn.fit(X_train, Y_train) #training
+    knn.fit(X_train, Y_train) 
     knn_predictions = knn.predict(X_test) 
     
     #providing columns with headers labels in google spreadsheet

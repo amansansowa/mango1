@@ -61,7 +61,7 @@ Y = df.iloc[:,-1].values
 #open the google spreadsheet
 #the output of this code will be updated to this google spreadsheet
 #this spreadsheet can be accessed from google drive
-worksheet = gc.open('G25_out.csv').sheet1 
+worksheet = gc.open('G25_out.csv').sheet1
 
 #our aim is to get the output from fold no#1 to no#10
 #loop variable is used to change the cross_validation values from 1 to 10
@@ -84,7 +84,7 @@ for x in range (1,11):
     X_test = sc_X.transform(X_test)
      
     #prints the number of folds
-    print(cv,":CV value")
+    print("for CV value =",cv,"we have the following output:\n")
     
     #for RandomForest classifier and tuning hyperparameter
     clf = RandomForestClassifier(n_estimators=100) 
@@ -150,11 +150,12 @@ for x in range (1,11):
     cell_list = worksheet.update_cell(cv + 1, 7, f1_score(Y_test, knn_predictions, average= 'weighted'))                                  
     print('kNN F1score:', accuracy_score(Y_test, knn_predictions))
     cell_list = worksheet.update_cell(cv + 1, 8, accuracy_score(Y_test, knn_predictions))
+    print("\n")
 
   if loop < 2: 
     
     loop = loop +1 
-    print(1,":CV value")
+    print("for CV value =",1,"we have the following output:\n")
     
     #splitting data into test and train
     #test data is 20%
@@ -235,3 +236,4 @@ for x in range (1,11):
     cell_list = worksheet.update_cell(2, 7, f1_score(Y_test, knn_predictions, average= 'weighted'))                                  
     print('kNN F1score:', accuracy_score(Y_test, knn_predictions))
     cell_list = worksheet.update_cell(2, 8, accuracy_score(Y_test, knn_predictions))
+    print("\n")

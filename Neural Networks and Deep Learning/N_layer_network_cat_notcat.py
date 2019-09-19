@@ -84,8 +84,6 @@ layers_dims = (n_x, n_h, n_y)
 # In[35]:
 
 
-# GRADED FUNCTION: initialize_parameters
-
 def initialize_parameters(n_x, n_h, n_y):
     
     np.random.seed(1)
@@ -111,8 +109,6 @@ def initialize_parameters(n_x, n_h, n_y):
 # In[36]:
 
 
-# GRADED FUNCTION: initialize_parameters_deep
-
 def initialize_parameters_deep(layer_dims):
 
     np.random.seed(3)
@@ -133,8 +129,6 @@ def initialize_parameters_deep(layer_dims):
 # In[37]:
 
 
-# GRADED FUNCTION: linear_forward
-
 def linear_forward(A, W, b):
 
     Z = np.dot(W,A) + b
@@ -147,8 +141,6 @@ def linear_forward(A, W, b):
 
 # In[38]:
 
-
-# GRADED FUNCTION: linear_activation_forward
 
 def linear_activation_forward(A_prev, W, b, activation):
 
@@ -171,13 +163,11 @@ def linear_activation_forward(A_prev, W, b, activation):
 # In[39]:
 
 
-# GRADED FUNCTION: L_model_forward
-
 def L_model_forward(X, parameters):
 
     caches = []
     A = X
-    L = len(parameters) // 2                  # number of layers in the neural network
+    L = len(parameters) // 2  # number of layers in the neural network
     
     for l in range(1, L):
         A_prev = A 
@@ -196,8 +186,6 @@ def L_model_forward(X, parameters):
 # In[40]:
 
 
-# GRADED FUNCTION: compute_cost
-
 def compute_cost(AL, Y):
 
     m = Y.shape[1]
@@ -213,8 +201,6 @@ def compute_cost(AL, Y):
 
 # In[41]:
 
-
-# GRADED FUNCTION: linear_backward
 
 def linear_backward(dZ, cache):
 
@@ -235,8 +221,6 @@ def linear_backward(dZ, cache):
 # In[42]:
 
 
-# GRADED FUNCTION: linear_activation_backward
-
 def linear_activation_backward(dA, cache, activation):
 
     linear_cache, activation_cache = cache
@@ -254,8 +238,6 @@ def linear_activation_backward(dA, cache, activation):
 
 # In[43]:
 
-
-# GRADED FUNCTION: L_model_backward
 
 def L_model_backward(AL, Y, caches):
     grads = {}
@@ -286,8 +268,6 @@ def L_model_backward(AL, Y, caches):
 # In[44]:
 
 
-# GRADED FUNCTION: update_parameters
-
 def update_parameters(parameters, grads, learning_rate):
 
     L = len(parameters) // 2 # number of layers in the neural network
@@ -302,8 +282,6 @@ def update_parameters(parameters, grads, learning_rate):
 # In[47]:
 
 
-# GRADED FUNCTION: two_layer_model
-
 def two_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 3000, print_cost=False):
     
     np.random.seed(1)
@@ -312,7 +290,7 @@ def two_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 
     m = X.shape[1]                           # number of examples
     (n_x, n_h, n_y) = layers_dims
     
-    # Initialize parameters dictionary, by calling one of the functions you'd previously implemented
+    # Initialize parameters dictionary, by calling one of the functions previously implemented
     parameters = initialize_parameters(n_x,n_h,n_y)
  
     # Get W1, b1, W2 and b2 from the dictionary parameters.

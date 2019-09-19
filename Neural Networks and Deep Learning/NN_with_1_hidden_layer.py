@@ -15,7 +15,7 @@ from planar_utils import plot_decision_boundary, sigmoid, load_planar_dataset, l
 import matplotlib as mpl
 get_ipython().run_line_magic('matplotlib', 'inline')
 
-np.random.seed(1) # set a seed so that the results are consistent
+np.random.seed(1)
 
 
 # In[75]:
@@ -60,8 +60,6 @@ def layer_sizes(X, Y):
 # In[79]:
 
 
-# GRADED FUNCTION: initialize_parameters
-
 def initialize_parameters(n_x, n_h, n_y):
 
     np.random.seed(2) # we set up a seed so that your output matches ours although the initialization is random.
@@ -87,7 +85,7 @@ def initialize_parameters(n_x, n_h, n_y):
 # In[80]:
 
 
-# GRADED FUNCTION: forward_propagation
+#forward_propagation
 
 def forward_propagation(X, parameters):
 
@@ -250,25 +248,13 @@ print("b2 = " + str(parameters["b2"]))
 # In[86]:
 
 
-# GRADED FUNCTION: predict
+# predict
 
 def predict(parameters, X):
-    """
-    Using the learned parameters, predicts a class for each example in X
-    
-    Arguments:
-    parameters -- python dictionary containing your parameters 
-    X -- input data of size (n_x, m)
-    
-    Returns
-    predictions -- vector of predictions of our model (red: 0 / blue: 1)
-    """
     
     # Computes probabilities using forward propagation, and classifies to 0/1 using 0.5 as the threshold.
-    ### START CODE HERE ### (≈ 2 lines of code)
     A2, cache = forward_propagation(X, parameters)
     predictions = A2 > 0.5
-    ### END CODE HERE ###
     
     return predictions
 
